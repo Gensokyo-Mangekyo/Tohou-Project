@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+
+}
+@using Tohou_Project.Models;
+@model PathAndInfoTitle
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        #Description {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        #Name {
+            font-size: 30px;
+            font-weight: bolder;
+        }
+
+        #DescriptionText {
+            white-space: pre;
+            font-family: 'Times New Roman';
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        .Chapter {
+            font-size: 29px;
+            background-color: deepskyblue;
+            border-style: inset;
+            border-color: white;
+            text-decoration: none;
+            color: green;
+        }
+
+        select {
+            width: 157px;
+        }
+    </style>
+    <div>
+        <img src ="../Images/@Model.InfoManga.Image" style="float: left" width="157``" height="200" alt="Image not found"/>
+        <span id="Name">@Model.InfoManga.Name</span>
+        <p id="Description">Description</p>
+        <p id="DescriptionText">
+            @Model.InfoManga.decsription
+        </p>
+    </div>
+    <div>
+        @{
+            var pizdatebe = new SortedList<int, string>();
+                <form method="post">
+                    <select name="chapter">
+                        <option value="0">Выбрать главы</option>
+                        @if (Model.chapters.TryGetValue(@ViewData["Title"] as string, out pizdatebe))
+                        {
+                            foreach (var item in pizdatebe)
+                            {
+                                <option value="@item.Key">@item.Value</option>
+                            }
+                        }
+                    </select>
+                    <br />
+                    <button class="Chapter" type="submit">Begin read</button>
+                    <br />
+                    @if (Model.BeginReading)
+                    {
+                        if (Model.NotReadChapter != -1)
+                        {
+                            
+                        <button name="LastReadChapter" value="@Model.NotReadChapter" type="submit">Continue with @Model.NotReadChapter chapter</button>
+                        }
+                        else
+                        {
+                <p>Congratulations you read all chapters</p>
+                        }
+                    }
+                </form>
+        }
+
+    </div>
+</body>
+</html>

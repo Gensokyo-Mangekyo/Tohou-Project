@@ -1,0 +1,43 @@
+﻿@using Tohou_Project.Models;
+@model Page
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .Begin {
+                 
+            text-align: center;
+            color: white;
+        }
+    </style>
+    <div class="Begin">
+        <a name="mark1"></a>
+        <form method="post">
+            <button type="submit"><</button>
+            <span>Chapter @(Model.chapter+1)</span>
+            <button name="str" type="submit" value="next">></button>
+        </form>
+        @foreach (var item in Model.pages)
+        {
+         <img src ="../@item" />
+
+        }
+    <form method="post">
+        <button type="submit"><</button>
+        <span>Chapter @(Model.chapter+1)</span>
+        <button name="str" type="submit" value="next">></button>
+    </form>
+    </div>
+</body>
+</html>

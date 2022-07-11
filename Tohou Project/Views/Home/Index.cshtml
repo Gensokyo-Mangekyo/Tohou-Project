@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+
+}
+@using Tohou_Project.Models;
+@model InfoManga[] 
+<html>
+<head>
+    <title>Мой сайт</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        #Names {
+            font-size: 20px;
+        }
+        h1{
+            text-align: center;
+        }
+        li {
+            display: inline-block;
+        }
+    </style>
+    <h1>Каталог</h1>
+    <ul type="none">
+        @foreach (var item in Model)
+        {
+        <li>
+            @{ 
+                string image = item.Image;
+                int id = item.id;
+            <a href="manga/@id"><img src="../Images/@image" width="200" height="200" alt="Image not found" /></a>
+            <p id="Names">Seasonal Dream Vision</p>
+                }
+        </li>
+        }
+    </ul>
+</body>
+</html>
